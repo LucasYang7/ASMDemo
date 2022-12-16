@@ -16,7 +16,7 @@ import java.io.InputStream;
 public class ASMTest {
     public static void redefineHelloWorldClass() {
         try {
-            InputStream inputStream = new FileInputStream("/Users/yangzhe09/Demo/ASMDemo/app/src/main/java/com/xiaozhezhe/asmdemo/HelloWorld.class");
+            InputStream inputStream = new FileInputStream("src/main/java/com/xiaozhezhe/asmdemo/HelloWorld.class");
             // 1. 创建 ClassReader 读入 .class 文件到内存中
             ClassReader reader = new ClassReader(inputStream);
             // 2. 创建 ClassWriter 对象，将操作之后的字节码的字节数组回写
@@ -31,7 +31,7 @@ public class ASMTest {
             byte[] code = writer.toByteArray();
             try {
                 // 将二进制流写到本地磁盘上
-                FileOutputStream fos = new FileOutputStream("/Users/yangzhe09/Demo/ASMDemo/app/src/main/java/com/xiaozhezhe/asmdemo/NewHelloWorld.class");
+                FileOutputStream fos = new FileOutputStream("src/main/java/com/xiaozhezhe/asmdemo/NewHelloWorld.class");
                 fos.write(code);
                 fos.close();
             } catch (IOException e) {
