@@ -1,0 +1,56 @@
+apply plugin: 'java-library'
+apply plugin: 'groovy'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+    }
+
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:3.6.1'
+    implementation 'org.ow2.asm:asm:9.2'
+    implementation 'com.squareup:javapoet:1.10.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDir 'src/main/groovy'
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+}
+
+tasks.withType(ProcessResources) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
