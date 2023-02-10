@@ -9,8 +9,11 @@ class KtStringTest {
     }
 
     var testString = "testString"
+    val testFinalString = "testFinalString"
 
     fun test(): String {
+        val testLocalFinalString = "testLocalFinalString"
+        var testLocalString = "testLocalString"
         Log.d(TAG, LOG_CONTENT)
         Log.d("stringLog2","This is KtStringTest log content2")
         return LOG_CONTENT
